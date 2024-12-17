@@ -9,6 +9,10 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+// Import the router and assign to a variable
+// The name of the variable does not matter
+const someRouterImported = require('./externalroute');
+
 // Keep code D.R.Y when possible. 
 // Different routes can use the same function!
 function messageWithVerb(request, response) {
@@ -63,3 +67,7 @@ app.listen(port, () => {
     // This logged message will appear in the terminal, not the browser.
     console.log(`Example app listening on port ${port}`);
 });
+
+// Tell the server to use the router,
+// and specify a prefix for the router
+app.use("/someFancyRouter", someRouterImported)
